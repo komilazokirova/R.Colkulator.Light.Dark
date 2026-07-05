@@ -1,16 +1,65 @@
-export default function Button({ value, variant = "number", onClick }) {
-    const base = "aspect-square rounded-2xl text-lg font-semibold transition-all duration-150 active:scale-95";
+import React from 'react'
+import { useTheme } from '../context/ThemeContext'
 
-    const variants = {
-        number: "bg-[#e8ecf1] text-gray-700 shadow-[4px_4px_8px_#c5c9d0,-4px_-4px_8px_#ffffff] dark:bg-[#1e1e1e] dark:text-white dark:shadow-[4px_4px_8px_#0a0a0a,-4px_-4px_8px_#2c2c2c]",
-        operator: "border-2 border-blue-500 text-blue-500 bg-[#e8ecf1] dark:bg-[#1e1e1e]",
-        equals: "bg-blue-500 text-white shadow-[4px_4px_8px_#c5c9d0,-4px_-4px_8px_#ffffff]",
-        clear: "bg-[#e8ecf1] text-gray-700 dark:bg-[#1e1e1e] dark:text-white",
-    };
+const Button = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
-    return (
-        <button className={`${base} ${variants[variant]}`} onClick={() => onClick(value)}>
-            {value}
+  // Fon rangi
+  const btnBg = isDark ? "bg-gray-800 text-gray-100" : "bg-gray-200 text-gray-800";
+
+  // soya - dark va light uchun alohida
+  const btnShadow = isDark
+    ? "shadow-[6px_6px_12px_#0a0a0a,-6px_-6px_12px_#2a2a2a]"
+    : "shadow-[6px_6px_12px_#c8ccd1,-6px_-6px_12px_#ffffff]";
+
+  const btnActiveShadow = isDark
+    ? "active:shadow-[inset_6px_6px_12px_#0a0a0a,inset_-6px_-6px_12px_#2a2a2a]"
+    : "active:shadow-[inset_6px_6px_12px_#c8ccd1,inset_-6px_-6px_12px_#ffffff]";
+
+  // Har bir oddiy tugma uchun umumiy klasslar
+  const btnClass = `${btnBg} ${btnShadow} ${btnActiveShadow} rounded-xl p-6 transition-shadow`;
+
+  return (
+    <div className='flex flex-col gap-6'>
+      {/* Ekran */}
+      <div
+        className={`${isDark ? "bg-gray-900 border-blue-500" : "bg-gray-100 border-blue-500"} 
+          border-2 rounded-2xl px-4 py-6 text-right text-3xl font-mono w-80 ${isDark ? "text-white" : "text-gray-800"}`}
+      >
+        0
+      </div>
+
+     {/* tugma */}
+      <div className='grid grid-cols-4 gap-4'>
+        <button className={btnClass}>AC</button>
+        <button className={btnClass}>$</button>
+        <button className={btnClass}>%</button>
+        <button className={btnClass}>/</button>
+
+        <button className={btnClass}>7</button>
+        <button className={btnClass}>8</button>
+        <button className={btnClass}>9</button>
+        <button className={btnClass}>x</button>
+
+        <button className={btnClass}>4</button>
+        <button className={btnClass}>5</button>
+        <button className={btnClass}>6</button>
+        <button className={btnClass}>-</button>
+
+        <button className={btnClass}>1</button>
+        <button className={btnClass}>2</button>
+        <button className={btnClass}>3</button>
+        <button className={btnClass}>+</button>
+
+        <button className={`col-span-2 ${btnClass}`}>0</button>
+        <button className={btnClass}>.</button>
+        <button className={`bg-blue-500 text-white rounded-xl p-6 transition-shadow ${btnShadow} ${btnActiveShadow}`}>
+          =
         </button>
-    );
+      </div>
+    </div>
+  );
 }
+
+export default Button

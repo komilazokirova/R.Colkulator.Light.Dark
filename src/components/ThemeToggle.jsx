@@ -1,11 +1,11 @@
-import { useTheme } from '../context/ThemeContext';
+// import { useTheme } from '../context/ThemeContext';
 
-export default function ThemeToggle() {
-    const { theme, toggleTheme } = useTheme();
+// export default function ThemeToggle() {
+//     const { theme, toggleTheme } = useTheme();
 
-    return (
-        <button onClick={toggleTheme}>
-            {theme === "light" ? "🌙" : "☀️"}
-        </button>
-    );
-}
+//     return (
+//         <button onClick={toggleTheme}>
+//             {theme === "light" ? "🌙" : "☀️"}
+//         </button>
+//     );
+// }
